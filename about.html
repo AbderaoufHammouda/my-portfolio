@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>About - Abderaouf HAMMOUDA</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00FFFF",
+                        "background-light": "#000000",
+                        "background-dark": "#000000",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'glow': '0 0 15px 5px rgba(0, 255, 255, 0.5), 0 0 25px 10px rgba(0, 255, 255, 0.2)',
+                        'button-glow': '0 0 8px rgba(0, 255, 255, 0.7)',
+                        'card-glow': '0 0 20px rgba(0, 255, 255, 0.15)',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .animate-scaleIn {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+
+        .animate-slideInLeft {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-500 {
+            animation-delay: 0.5s;
+        }
+
+        .delay-600 {
+            animation-delay: 0.6s;
+        }
+
+        .opacity-0 {
+            opacity: 0;
+        }
+
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(145deg, rgba(0, 255, 255, 0.05), rgba(0, 255, 255, 0.02));
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(145deg, #00FFFF, transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.5;
+        }
+
+        .tech-badge {
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-background-dark font-display text-white">
+    <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <div class="mx-auto w-full max-w-6xl px-4 py-5 sm:px-6 lg:px-8">
+                <div class="layout-content-container flex flex-1 flex-col">
+                    <!-- Header -->
+                    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/30 px-4 py-4 md:px-10 opacity-0 animate-fadeIn">
+                        <div class="flex items-center gap-4 text-white">
+                            <div class="text-primary">
+                                <span class="material-symbols-outlined text-2xl">code_blocks</span>
+                            </div>
+                            <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Abderaouf HAMMOUDA</h2>
+                        </div>
+                        <div class="hidden flex-1 justify-end gap-8 md:flex">
+                            <div class="flex items-center gap-9">
+                                <a class="text-white text-sm font-medium leading-normal transition-colors hover:text-primary" href="index.html">Home</a>
+                                <a class="text-primary text-sm font-medium leading-normal" href="about.html">About</a>
+                                <a class="text-white text-sm font-medium leading-normal transition-colors hover:text-primary" href="#">Projects</a>
+                                <a class="text-white text-sm font-medium leading-normal transition-colors hover:text-primary" href="#">Contact</a>
+                            </div>
+                        </div>
+                        <button class="md:hidden text-white">
+                            <span class="material-symbols-outlined">menu</span>
+                        </button>
+                    </header>
+
+                    <!-- Main Content -->
+                    <main class="flex-grow py-12 md:py-16">
+                        <!-- Hero Section -->
+                        <div class="px-4 mb-16 opacity-0 animate-fadeInUp">
+                            <div class="text-center mb-8">
+                                <h1 class="text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tighter mb-4">
+                                    About <span class="text-primary">Me</span>
+                                </h1>
+                                <div class="w-24 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto"></div>
+                            </div>
+                        </div>
+
+                        <!-- Introduction Section -->
+                        <div class="px-4 mb-16 opacity-0 animate-scaleIn delay-200">
+                            <div class="gradient-border rounded-xl p-8 md:p-12 shadow-card-glow">
+                                <div class="flex flex-col md:flex-row gap-8 items-center">
+                                    <div class="relative flex-shrink-0">
+                                        <div class="absolute inset-0 rounded-full bg-primary blur-2xl opacity-30"></div>
+                                        <div class="relative h-48 w-48 md:h-56 md:w-56 rounded-full border-4 border-primary shadow-glow">
+                                            <img class="h-full w-full rounded-full object-cover" src="images/profile.png" alt="Abderaouf HAMMOUDA"/>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow text-center md:text-left">
+                                        <p class="text-lg md:text-xl leading-relaxed text-gray-300 mb-4">
+                                            Hi, I'm <span class="text-primary font-semibold">Abderaouf HAMMOUDA</span>, a third-year Computer Science engineering student at ESTIN. I'm passionate about creating modern digital experiences, with a strong interest in front-end development, UI/UX design, machine learning, and data science.
+                                        </p>
+                                        <p class="text-base md:text-lg leading-relaxed text-gray-400">
+                                            I work with technologies such as <span class="text-primary">C, C++, Python, HTML, CSS, JavaScript, React</span>, and <span class="text-primary">Figma</span>, and I enjoy combining clean design with solid engineering.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Technologies Section -->
+                        <div class="px-4 mb-16 opacity-0 animate-fadeInUp delay-300">
+                            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">
+                                <span class="text-primary">Technologies</span> & Tools
+                            </h2>
+                            <div class="flex flex-wrap justify-center gap-3 md:gap-4">
+                                <span class="tech-badge px-5 py-2.5 bg-primary/10 border border-primary/40 rounded-full text-sm md:text-base font-medium text-primary">C</span>
+                                <span class="tech-badge px-5 py-2.5 bg-primary/10 border border-primary/40 rounded-full text-sm md:text-base font-medium text-primary">C++</span>
+                                <span class="tech-badge px-5 py-2.5 bg-primary/10 border border-primary/40 rounded-full text-sm md:text-base font-medium text-primary">Python</span>
+                                <span class="tech-badge px-5 py-2.5 bg-primary/10 border border-primary/40 rounded-full text-sm md:text-base font-medium text-primary">HTML</span>
+                                <span class="tech-badge px-5 py-2.5 bg-primary/10 border border-primary/40 rounded-full text-sm md:text-base font-medium text-primary">CSS</span>
+                                <span class="tech-badge px-5 py-2.5 bg-primary/10 border border-primary/40 rounded-full text-sm md:text-base font-medium text-primary">JavaScript</span>
+                                <span class="tech-badge px-5 py-2.5 bg-primary/10 border border-primary/40 rounded-full text-sm md:text-base font-medium text-primary">React</span>
+                                <span class="tech-badge px-5 py-2.5 bg-primary/10 border border-primary/40 rounded-full text-sm md:text-base font-medium text-primary">Figma</span>
+                            </div>
+                        </div>
+
+                        <!-- Experience Cards -->
+                        <div class="px-4 mb-16">
+                            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center opacity-0 animate-fadeInUp delay-400">
+                                My <span class="text-primary">Journey</span>
+                            </h2>
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <!-- VisitAlgeria Card -->
+                                <div class="gradient-border rounded-xl p-8 opacity-0 animate-slideInLeft delay-500 hover:shadow-glow transition-shadow">
+                                    <div class="flex items-start gap-4 mb-4">
+                                        <div class="flex-shrink-0 w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-primary text-2xl">travel_explore</span>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">VisitAlgeria</h3>
+                                            <p class="text-sm text-gray-400 mb-3">Founder & UI/UX Designer</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-base leading-relaxed text-gray-300">
+                                        During my second year at ESTIN, I founded VisitAlgeria, a web application developed as part of the multidisciplinary project module. I was responsible for the UI/UX design and contributed to the front-end development, transforming the idea into a functional and visually refined platform.
+                                    </p>
+                                </div>
+
+                                <!-- DZ-Rent-It Card -->
+                                <div class="gradient-border rounded-xl p-8 opacity-0 animate-slideInLeft delay-600 hover:shadow-glow transition-shadow">
+                                    <div class="flex items-start gap-4 mb-4">
+                                        <div class="flex-shrink-0 w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-primary text-2xl">shopping_bag</span>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">DZ-Rent-It</h3>
+                                            <p class="text-sm text-gray-400 mb-3">Front-End Developer</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-base leading-relaxed text-gray-300">
+                                        I'm currently working on DZ-Rent-It, where I serve as a front-end developer, improving the user interface and ensuring an engaging and smooth user experience.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- What Sets Me Apart Section -->
+                        <div class="px-4 mb-16 opacity-0 animate-fadeInUp delay-500">
+                            <div class="gradient-border rounded-xl p-8 md:p-12">
+                                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">
+                                    What Sets Me <span class="text-primary">Apart</span>
+                                </h2>
+                                <div class="space-y-6 text-base md:text-lg leading-relaxed text-gray-300">
+                                    <p>
+                                        My ability to <span class="text-primary font-semibold">blend design sensibility with technical skill</span> is what truly distinguishes me. I don't just build interfaces—I craft user-focused solutions that balance aesthetics, usability, and performance.
+                                    </p>
+                                    <p>
+                                        My background in <span class="text-primary font-semibold">machine learning and data science</span> also gives me a deeper analytical approach, allowing me to tackle problems from multiple angles and create more intelligent, data-driven solutions.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Who I Am Section -->
+                        <div class="px-4 mb-12 opacity-0 animate-scaleIn delay-600">
+                            <div class="gradient-border rounded-xl p-8 md:p-12 text-center">
+                                <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                                    Who <span class="text-primary">I Am</span>
+                                </h2>
+                                <p class="text-base md:text-lg leading-relaxed text-gray-300 max-w-4xl mx-auto">
+                                    I consider myself a <span class="text-primary font-semibold">curious and creative problem-solver</span>. I enjoy learning new technologies, exploring innovative ideas, and collaborating with others. Whether designing, coding, or brainstorming with a team, I stay motivated, adaptable, and committed to delivering high-quality results.
+                                </p>
+                                <div class="mt-8 flex flex-wrap justify-center gap-4">
+                                    <a href="index.html" class="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-primary text-background-dark text-base font-bold leading-normal tracking-[0.015em] transition-shadow hover:shadow-button-glow">
+                                        <span>Back Home</span>
+                                    </a>
+                                    <a href="#" class="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 border-2 border-primary bg-transparent text-primary text-base font-bold leading-normal tracking-[0.015em] transition-colors hover:bg-primary/20">
+                                        <span>Contact Me</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+
+                    <!-- Footer -->
+                    <footer class="border-t border-primary/30 py-8 px-4 opacity-0 animate-fadeIn delay-600">
+                        <div class="text-center text-gray-400 text-sm">
+                            <p>&copy; 2025 Abderaouf HAMMOUDA. All rights reserved.</p>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
