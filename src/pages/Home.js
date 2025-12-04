@@ -3,6 +3,41 @@ import React, { useState } from 'react';
 const Home = () => {
   const [showContactModal, setShowContactModal] = useState(false);
   const [showHireModal, setShowHireModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    const formData = new FormData(e.target);
+    
+    try {
+      const response = await fetch("https://formspree.io/f/xdkroreb", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        e.target.reset();
+        setTimeout(() => {
+            setShowHireModal(false);
+            setSubmitStatus(null);
+        }, 3000);
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <main className="flex-grow">
@@ -127,31 +162,49 @@ const Home = () => {
 
       {/* Hire Me Modal */}
       {showHireModal && (
-        <div className="fixed inset-0 z-50 overflow-y-auto">
-          <div className="fixed inset-0 z-40 bg-black/95 backdrop-blur-md" onClick={() => setShowHireModal(false)}></div>
-          <div className="flex min-h-screen items-center justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-            <span className="hidden sm:inline-block sm:h-screen sm:align-middle">&#8203;</span>
-            <div className="relative z-50 inline-block align-bottom bg-black rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full gradient-border" onClick={(e) => e.stopPropagation()}>
-              <div className="p-8 bg-black">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-2xl font-bold text-primary">Hire Me</h3>
-                  <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setShowHireModal(false);
-                    }}
-                    className="text-gray-400 hover:text-primary transition-colors"
-                    type="button"
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/90 backdrop-blur-sm"
+            onClick={() => setShowHireModal(false)}
+          ></div>
+          
+          {/* Modal Content */}
+          <div className="relative z-10 w-full max-w-lg bg-black border border-primary/20 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-800">
+              <h3 className="text-2xl font-bold text-primary">Hire Me</h3>
+              <button
+                type="button"
+                className="text-gray-400 hover:text-primary transition-colors p-2"
+                onClick={() => setShowHireModal(false)}
+                aria-label="Close"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Scrollable Content */}
+            <div className="p-6 overflow-y-auto custom-scrollbar">
+              <p className="text-gray-300 mb-6">Let's work together on your next project</p>
+
+              {submitStatus === 'success' && (
+                <div className="mb-6 p-4 rounded-lg bg-green-500/10 border border-green-500/20 text-green-400 text-center animate-fadeIn">
+                  <p className="font-medium">Message sent successfully!</p>
+                  <p className="text-sm opacity-80">I'll get back to you soon.</p>
                 </div>
-                
-                <p className="text-gray-300 mb-6 text-center">Let's work together on your next project</p>
-              
-              <form action="https://formspree.io/f/xdkroreb" method="POST" className="space-y-5">
+              )}
+
+              {submitStatus === 'error' && (
+                <div className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-center animate-fadeIn">
+                  <p className="font-medium">Something went wrong.</p>
+                  <p className="text-sm opacity-80">Please try again later.</p>
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Full Name */}
                 <div>
                   <label htmlFor="fullname" className="block text-sm font-medium text-gray-300 mb-2">
@@ -162,8 +215,7 @@ const Home = () => {
                     id="fullname"
                     name="fullname"
                     required
-                    autoComplete="name"
-                    className="w-full px-4 py-3 bg-primary/5 border border-primary/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                    className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
                     placeholder="John Doe"
                   />
                 </div>
@@ -178,8 +230,7 @@ const Home = () => {
                     id="email"
                     name="email"
                     required
-                    autoComplete="email"
-                    className="w-full px-4 py-3 bg-primary/5 border border-primary/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                    className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -193,8 +244,7 @@ const Home = () => {
                     type="text"
                     id="company"
                     name="company"
-                    autoComplete="organization"
-                    className="w-full px-4 py-3 bg-primary/5 border border-primary/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                    className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
                     placeholder="Your Company"
                   />
                 </div>
@@ -207,16 +257,15 @@ const Home = () => {
                   <select
                     id="budget"
                     name="budget"
-                    className="w-full px-4 py-3 bg-primary/5 border border-primary/30 rounded-lg text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors cursor-pointer"
-                    style={{ colorScheme: 'dark' }}
+                    className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors cursor-pointer"
                   >
-                    <option value="" className="bg-black text-white">Select a range</option>
-                    <option value="$10 - $50" className="bg-black text-white">$10 - $50</option>
-                    <option value="$50 - $100" className="bg-black text-white">$50 - $100</option>
-                    <option value="$100 - $500" className="bg-black text-white">$100 - $500</option>
-                    <option value="$500 - $1,000" className="bg-black text-white">$500 - $1,000</option>
-                    <option value="$1,000 - $5,000" className="bg-black text-white">$1,000 - $5,000</option>
-                    <option value="$5,000+" className="bg-black text-white">$5,000+</option>
+                    <option value="" className="bg-gray-900">Select a range</option>
+                    <option value="$10 - $50" className="bg-gray-900">$10 - $50</option>
+                    <option value="$50 - $100" className="bg-gray-900">$50 - $100</option>
+                    <option value="$100 - $500" className="bg-gray-900">$100 - $500</option>
+                    <option value="$500 - $1,000" className="bg-gray-900">$500 - $1,000</option>
+                    <option value="$1,000 - $5,000" className="bg-gray-900">$1,000 - $5,000</option>
+                    <option value="$5,000+" className="bg-gray-900">$5,000+</option>
                   </select>
                 </div>
 
@@ -230,7 +279,7 @@ const Home = () => {
                     name="message"
                     required
                     rows="4"
-                    className="w-full px-4 py-3 bg-primary/5 border border-primary/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none"
+                    className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none"
                     placeholder="Tell me about your project..."
                   ></textarea>
                 </div>
@@ -238,15 +287,21 @@ const Home = () => {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 rounded-full h-12 px-6 bg-primary text-background-dark text-base font-bold leading-normal tracking-[0.015em] transition-shadow hover:shadow-button-glow"
+                  disabled={isSubmitting}
+                  className="w-full flex items-center justify-center gap-2 rounded-full h-12 px-6 bg-primary text-background-dark text-base font-bold leading-normal tracking-[0.015em] transition-shadow hover:shadow-button-glow hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <span>Send Message</span>
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
+                  {isSubmitting ? (
+                    <span>Sending...</span>
+                  ) : (
+                    <>
+                      <span>Send Message</span>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </>
+                  )}
                 </button>
               </form>
-              </div>
             </div>
           </div>
         </div>

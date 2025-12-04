@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const About = () => {
-  const technologies = ['C', 'C++', 'Python', 'HTML', 'CSS', 'JavaScript', 'React', 'Figma'];
+  const technologies = ['C', 'C++', 'Python', 'HTML', 'CSS', 'JavaScript', 'React', 'Tailwind', 'Git', 'GitHub', 'Jupyter Notebook', 'TensorFlow', 'Figma'];
   const [showContactModal, setShowContactModal] = useState(false);
 
   return (
@@ -95,7 +95,7 @@ const About = () => {
           </div>
 
           {/* CTF Competitions - October 2024 */}
-          <div className="gradient-border rounded-xl p-8 opacity-0 animate-slideInLeft delay-700 hover:shadow-glow transition-shadow">
+          <Link to="/competitions/nextrace-2024" className="gradient-border rounded-xl p-8 opacity-0 animate-slideInLeft delay-700 hover:shadow-glow transition-shadow block">
             <div className="flex items-start gap-4 mb-4">
               <div className="flex-shrink-0 w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
                 <span className="material-symbols-outlined text-primary text-2xl">shield</span>
@@ -108,10 +108,13 @@ const About = () => {
             <p className="text-base leading-relaxed text-gray-300">
               In October 2024, I participated in a Capture The Flag cybersecurity competition organized by the Nexus Security Club at ESTIN Béjaïa. Competing with my team "Attack On Tal3a", we finished <span className="text-primary font-semibold">7th place out of 25 teams</span>. I personally earned <span className="text-primary font-semibold">2100 points</span> by solving multiple challenges, gaining valuable experience in cybersecurity and problem-solving.
             </p>
-          </div>
+            <div className="mt-4 flex items-center text-primary text-sm font-medium group">
+              View Details <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+            </div>
+          </Link>
 
           {/* CTF Competitions - October 2025 */}
-          <div className="gradient-border rounded-xl p-8 opacity-0 animate-slideInLeft delay-800 hover:shadow-glow transition-shadow">
+          <Link to="/competitions/nextrace-2025" className="gradient-border rounded-xl p-8 opacity-0 animate-slideInLeft delay-800 hover:shadow-glow transition-shadow block">
             <div className="flex items-start gap-4 mb-4">
               <div className="flex-shrink-0 w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
                 <span className="material-symbols-outlined text-primary text-2xl">military_tech</span>
@@ -124,7 +127,10 @@ const About = () => {
             <p className="text-base leading-relaxed text-gray-300">
               In October 2025, I competed again with my upgraded team "Attack On Tal3a 2.0", achieving an impressive <span className="text-primary font-semibold">4th place out of 25 teams</span>. As team leader and the highest scorer with <span className="text-primary font-semibold">3500 points</span>, I solved several complex challenges using creative approaches. This experience strengthened my technical skills in cybersecurity, problem-solving, and challenge analysis.
             </p>
-          </div>
+            <div className="mt-4 flex items-center text-primary text-sm font-medium group">
+              View Details <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+            </div>
+          </Link>
         </div>
       </div>
 
@@ -154,12 +160,18 @@ const About = () => {
           <p className="text-base md:text-lg leading-relaxed text-gray-300 max-w-4xl mx-auto">
             I consider myself a <span className="text-primary font-semibold">curious and creative problem-solver</span>. I enjoy learning new technologies, exploring innovative ideas, and collaborating with others. Whether designing, coding, or brainstorming with a team, I stay motivated, adaptable, and committed to delivering high-quality results.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link to="/" className="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-primary text-background-dark text-base font-bold leading-normal tracking-[0.015em] transition-shadow hover:shadow-button-glow">
-              <span>Back Home</span>
+          <div className="mt-8 flex flex-wrap justify-center gap-4 relative z-10">
+            <Link to="/" className="flex items-center justify-center rounded-full h-12 px-8 bg-primary text-background-dark text-base font-bold transition-shadow hover:shadow-button-glow">
+              Back Home
             </Link>
-            <button onClick={() => setShowContactModal(true)} className="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 border-2 border-primary bg-transparent text-primary text-base font-bold leading-normal tracking-[0.015em] transition-colors hover:bg-primary/20">
-              <span>Contact Me</span>
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowContactModal(true);
+              }} 
+              className="flex items-center justify-center rounded-full h-12 px-8 border-2 border-primary bg-transparent text-primary text-base font-bold transition-colors hover:bg-primary/20"
+            >
+              Contact Me
             </button>
           </div>
         </div>
@@ -167,20 +179,29 @@ const About = () => {
 
       {/* Contact Modal */}
       {showContactModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 animate-fadeIn" onClick={() => setShowContactModal(false)}>
-          <div className="absolute inset-0 bg-black/95 backdrop-blur-md"></div>
-          <div className="relative z-10 w-full max-w-md animate-scaleIn" onClick={(e) => e.stopPropagation()}>
-            <div className="gradient-border rounded-2xl p-8 bg-black shadow-glow">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 animate-fadeIn">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/95 backdrop-blur-sm" 
+            onClick={() => setShowContactModal(false)}
+          ></div>
+          
+          {/* Modal Content */}
+          <div 
+            className="relative z-10 w-full max-w-md animate-scaleIn" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="bg-black border border-primary/20 rounded-2xl p-8 shadow-glow">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-2xl font-bold text-primary">Get In Touch</h3>
                 <button 
                   onClick={(e) => {
-                    e.preventDefault();
                     e.stopPropagation();
                     setShowContactModal(false);
                   }}
-                  className="text-gray-400 hover:text-primary transition-colors z-50"
+                  className="text-gray-400 hover:text-primary transition-colors p-2 rounded-full hover:bg-white/5"
                   type="button"
+                  aria-label="Close modal"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -194,7 +215,7 @@ const About = () => {
                 {/* Email Option */}
                 <a 
                   href="mailto:abderaoufhammouda@gmail.com"
-                  className="gradient-border rounded-xl p-6 flex items-center gap-4 hover:shadow-card-glow transition-all group"
+                  className="block border border-primary/20 rounded-xl p-6 flex items-center gap-4 hover:border-primary/50 hover:shadow-card-glow transition-all group bg-black"
                 >
                   <div className="flex-shrink-0 w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:bg-primary/30 transition-colors">
                     <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -213,7 +234,7 @@ const About = () => {
                 {/* Phone Option */}
                 <a 
                   href="tel:+213792276114"
-                  className="gradient-border rounded-xl p-6 flex items-center gap-4 hover:shadow-card-glow transition-all group"
+                  className="block border border-primary/20 rounded-xl p-6 flex items-center gap-4 hover:border-primary/50 hover:shadow-card-glow transition-all group bg-black"
                 >
                   <div className="flex-shrink-0 w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:bg-primary/30 transition-colors">
                     <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
